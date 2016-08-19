@@ -1,0 +1,44 @@
+<**/*.ml{,i}>: warn(-40), no_alias_deps
+<**/*>: thread
+# This prevents the implicit addition of -ppx options by ocamlfind
+<**/*>: predicate(custom_ppx)
+<src/*.ml>: for-pack(Async_parallel_deprecated)
+<src/*.ml{,i}>: pp(ppx-jane -dump-ast -inline-test-drop -bench-drop -inline-test-lib fake_for_drop)
+# OASIS_START
+# DO NOT EDIT (digest: d72cc29f33cb37d91b30f4d1fa714d91)
+# Ignore VCS directories, you can use the same kind of rule outside
+# OASIS_START/STOP if you want to exclude directories that contains
+# useless stuff for the build process
+true: annot, bin_annot
+<**/.svn>: -traverse
+<**/.svn>: not_hygienic
+".bzr": -traverse
+".bzr": not_hygienic
+".hg": -traverse
+".hg": not_hygienic
+".git": -traverse
+".git": not_hygienic
+"_darcs": -traverse
+"_darcs": not_hygienic
+# Library async_parallel_deprecated
+"src/async_parallel_deprecated.cmxs": use_async_parallel_deprecated
+"src/channel.cmx": for-pack(Async_parallel_deprecated)
+"src/hub.cmx": for-pack(Async_parallel_deprecated)
+"src/import.cmx": for-pack(Async_parallel_deprecated)
+"src/intf.cmx": for-pack(Async_parallel_deprecated)
+"src/master_process.cmx": for-pack(Async_parallel_deprecated)
+"src/std.cmx": for-pack(Async_parallel_deprecated)
+"src/token.cmx": for-pack(Async_parallel_deprecated)
+"src/worker_process.cmx": for-pack(Async_parallel_deprecated)
+<src/*.ml{,i,y}>: package(async)
+<src/*.ml{,i,y}>: package(bin_prot)
+<src/*.ml{,i,y}>: package(core)
+<src/*.ml{,i,y}>: package(fieldslib)
+<src/*.ml{,i,y}>: package(ppx_assert.runtime-lib)
+<src/*.ml{,i,y}>: package(ppx_bench.runtime-lib)
+<src/*.ml{,i,y}>: package(ppx_expect.collector)
+<src/*.ml{,i,y}>: package(ppx_inline_test.runtime-lib)
+<src/*.ml{,i,y}>: package(sexplib)
+<src/*.ml{,i,y}>: package(typerep)
+<src/*.ml{,i,y}>: package(variantslib)
+# OASIS_STOP
